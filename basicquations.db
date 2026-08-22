@@ -1,0 +1,126 @@
+CREATE TABLE employeess (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    department VARCHAR(30),
+    city VARCHAR(30),
+    salary INT
+);
+INSERT INTO employeess VALUES
+(101, 'Adil', 21, 'IT', 'Pune', 45000),
+(102, 'Rahul', 25, 'HR', 'Mumbai', 35000),
+(103, 'Sneha', 28, 'Finance', 'Pune', 55000),
+(104, 'Amit', 30, 'IT', 'Delhi', 60000),
+(105, 'Neha', 24, 'HR', 'Pune', 40000),
+(106, 'Rohan', 35, 'IT', 'Mumbai', 75000),
+(107, 'Priya', 27, 'Finance', 'Delhi', 50000),
+(108, 'Karan', 31, 'Sales', 'Pune', 65000),
+(109, 'Anjali', 26, 'Sales', 'Mumbai', 48000),
+(110, 'Vikas', 29, 'IT', 'Hyderabad', 70000);
+
+-- 1.Display all employee records.
+select * from employeess;
+
+-- 2.Display only name and salary.
+select name,salary from employeess;
+
+-- 3.Find employees whose salary is greater than 50,000.
+select * from employeess where salary > 50000;
+
+-- 4.Find employees from Pune.
+select * from employeess where city='Pune';
+
+-- 5.Find employees older than 25.
+select * from employeess where age > 25;
+
+-- 6.Find employees working in the IT department.
+select * from employeess where department='IT';
+
+-- 7.Sort employees by salary in descending order.
+select * from employeess order by  salary desc;
+
+-- 8.Display the first 5 employees.
+select * from employeess limit 5;
+
+-- 9.Find employees whose name starts with A.
+select * from employeess where name like 'A%';
+
+-- 10.Find employees whose city is not Mumbai.
+select * from employeess where city != 'Mumbai'; 
+
+-- 11.Find the highest salary.
+select * from employeess where salary=(select max(salary) from employeess);
+
+-- 12.Find the lowest salary.
+select * from employeess where salary=(select min(salary) from employeess);
+
+-- 13.Find the average salary.
+select avg(salary) from employeess;
+
+-- 14.Count the total number of employees.
+select count(emp_id) from employeess;
+
+-- 15.Count employees in each department.
+select department,count(emp_id) from employeess group by department;
+
+-- 16.Find the second-highest salary.
+select max(salary) from employeess where salary < (select max(salary) from employeess);
+
+-- 17.Display all unique cities.
+select distinct city from employeess;
+
+-- 18.Find employees earning more than the average salary.
+select * from employeess where salary > (select avg(salary) from employeess);
+
+-- 19.Find employees whose salary is between 40,000 and 60,000.
+select * from employeess where salary between 40000 and 60000;
+
+-- 20.Display the top 3 highest-paid employees.
+select * from employeess order by salary desc limit 3;
+
+-- 21.Find the department with the highest average salary.
+select department,avg(salary) as avg_sal from employeess group by department order by avg_sal desc limit 1;
+
+
+-- 22.Find the city with the maximum number of employees.
+select city,count(emp_id) as max_emp from employeess group by city order by max_emp desc limit 1;
+
+-- 23.Count employees in each city.
+select city,count(emp_id) from employeess group by city;
+
+-- 24.Find employees whose salary is equal to the maximum salary.
+select * from employeess where salary = (select max(salary) from employeess);
+
+
+-- 25.Find employees whose salary is below the average salary.
+select * from employeess where salary > (select avg(salary) from employeess);
+
+
+-- 26.Find the total salary paid to each department.
+select department,sum(salary) from employeess group by department;
+
+-- 27.Find departments having more than 2 employees.
+
+-- 28.Find employees whose names end with a.
+select * from employeess where name like '%a';
+
+-- 29.Find the third-highest salary.
+select max(salary) from employeess where salary < (select max(salary) from employeess where salary < (select max(salary) from employeess));
+
+-- 30.Find employees who have the same department as Adil.
+select * from employeess where department =(select department from employeess where name='Adil');
+
+-- 31.Increase the salary of all IT employees by 10%.
+update employeess set salary=(salary+(salary*0.1)) where department='IT';
+
+-- 32.Delete employees whose salary is less than 40,000.
+delete from employeess where salary < 40000;
+
+-- 33.Add a new column named email.
+alter table employeess add column email text;
+
+-- 34.Rename the column city to location.
+alter table employeess rename column city to location;
+
+-- 35.Drop the email column.
+alter table employeess drop column email;
