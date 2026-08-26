@@ -1,0 +1,36 @@
+                                -- CRUD Operations --
+								
+ -- 1. Create a table named `students` with `id`, `name`, `age`, and `city`.
+create table stude(id int primary key,name varchar(50),age int,city char(50));
+
+--2. Insert one student record into the table.
+insert into stude values(100,'adil patel',20,'Latur');
+
+
+--3. Insert 5 student records into the table.
+insert into stude values(101,'sameer patel',21,'Latur'),
+(102,'ail patel',6,'ausa'),
+(103,'sami patel',19,'pune'),
+(104,'zishan patel',20,'mumbai'),
+(105,'ail patel',78,'ausa');
+
+--4. Display all student records.
+select * from stude;
+
+--5. Display only `name` and `city`.
+select name,city from stude;
+
+--6. Update the city of a student.
+update stude set city='solapur' where city='Latur';
+
+--7. Update the age of a student.
+update stude set age=102 where id=102;
+
+--8. Delete one student using `id`.
+delete from stude where id=100;
+
+--9. Delete all students from the table.
+delete from stude;
+
+--10. Drop the `students` table.
+drop table stude;
