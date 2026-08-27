@@ -1,0 +1,14 @@
+--11. Create a `students` table with `id` as `PRIMARY KEY`.
+create table stude(id int primary key);
+
+--12. Create a table with `email` as `UNIQUE`.
+create table email(email varchar(50) unique);
+
+-- 13. Create a table where `name` is `NOT NULL`.
+create table name(name varchar(50) not null);
+
+--14. Create a table where `age` must be greater than 18 using `CHECK`.
+create table age(age int check(age > 18));
+
+--15. Create a table with `city` having a default value `"Pune"`.
+create table city(city varchar(50) default 'pune');

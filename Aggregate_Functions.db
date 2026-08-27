@@ -1,0 +1,28 @@
+--31. Find the total number of employees using `COUNT()`.
+select count(emp_id) from employees;
+
+--32. Find the total salary using `SUM()`.
+select sum(salary) from employees;
+
+--33. Find the average salary using `AVG()`.
+select avg(salary) from employees;
+
+--34. Find the highest salary using `MAX()`.
+select max(salary) from employees;
+
+--35. Find the lowest salary using `MIN()`.
+select min(salary) from employees;
+
+--36. Find the number of employees in each department using `GROUP BY`.
+select dept,count(emp_id) from employees group by dept;
+
+--37. Find the average salary of each department.
+select dept,avg(salary) from employees group by dept;
+
+--38. Find the highest salary in each department.
+select dept from employees where max(salary) group by dept;
+--39. Find departments having more than 5 employees using `HAVING`.
+
+--40. Find departments where the average salary is greater than 40000
+select dept from employees where avg(salary) > 40000 group by dept;
+

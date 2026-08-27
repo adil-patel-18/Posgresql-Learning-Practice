@@ -1,0 +1,29 @@
+--21. Display employees whose salary is greater than 30000 using `WHERE`.
+select * from employees where salary > 30000;
+
+--22. Display employees from `"Pune"` using `WHERE`.
+select * from employees where city='pune';
+
+--23. Display employees ordered by salary using `ORDER BY`.
+select * from employees order by salary desc;
+
+--24. Display employees from highest salary to lowest salary.
+select * from employees order by salary asc;
+
+--25. Display only the first 5 employees using `LIMIT`.
+select * from employees limit 3;
+
+--26. Display employees whose name starts with `"A"` using `LIKE`.
+select * from employees where name like 'A%';
+
+--27. Display employees whose salary is between 20000 and 50000 using `BETWEEN`.
+select * from employees where salary between 20000 and 50000;
+
+--28. Display employees from Pune or Mumbai using `IN`.
+select * from employees where city in('pune','mumbai');
+
+--29. Display employees whose salary is not 30000.
+select * from employees where salary not in(30000);
+
+--30. Display employees whose city is not NULL.
+select * from employees where city=Null;
