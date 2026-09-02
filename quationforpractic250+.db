@@ -6,7 +6,7 @@ CREATE TABLE students (
     marks INT,
     email VARCHAR(100)
 );
---                                      INSERT
+--                                                        INSERT
 
 --Q1.Insert one student into the students table.
 --Q2.Insert 5 students into the table.
@@ -27,7 +27,7 @@ VALUES
 (9, 'Anjali', 22, 'Pune', 92, 'anjali@gmail.com'),
 (10, 'Karan', 21, 'Mumbai', 60, 'karan@gmail.com');
 
---                                        SELECT
+--                                                             SELECT
 --Q6.Display all students.
 select * from students;
 
@@ -44,7 +44,7 @@ select * from students where city='Mumbai';
 select * from students where age=20;
 
 
---                                            UPDATE
+--                                                              UPDATE
 --Q11.Change the city of student id = 1 to Pune.
 update students set city='pune' where id=1;
 
@@ -60,7 +60,7 @@ update students set city='pune' where city='Mumbai';
 --Q15.Update the email of a particular student.
 update students set email='adilazeempatel2005@gmail.com' where id=1;
 
---                                           DELETE
+--                                                                 DELETE
 --Q16.Delete student whose id = 5.
 delete from students where id=5;
 
@@ -76,7 +76,7 @@ delete from students where age < 18;
 --Q20.Delete all records from the table.
 delete from students;
 
---                              Constraints
+--                                                               Constraints
 
 --Q21.Create a table with id as PRIMARY KEY.
 create table s(id int primary key);
@@ -113,8 +113,8 @@ alter table ss12 drop constraint asp;
 create table stud(id int primary key);
 create table cour(c_id int primary key,id int references stud(id));
 
---                                 Clauses 
---WHERE
+--                                                                    Clauses 
+--                                                                     WHERE
 
 --Q31.Find students whose marks are greater than 60.
 select * from students where marks > 60;
@@ -125,7 +125,7 @@ select * from students where age between 18 and 25;
 --Q33.Find students who live in Pune.
 select * from students where city='Pune';
 
---AND / OR
+--                                                                    AND / OR
 
 --Q34.Find students whose marks are greater than 70 AND age is greater than 18.
 select * from students where marks > 70 and age > 18;
@@ -133,7 +133,7 @@ select * from students where marks > 70 and age > 18;
 --Q35.Find students who live in Pune OR Mumbai.
 select * from students where city='Pune' or city='Mumbai';
 
---                                        BETWEEN
+--                                                                      BETWEEN
 
 --Q36.Find students whose marks are between 50 and 80.
 select * from students where marks between 50 and 80;
@@ -141,14 +141,14 @@ select * from students where marks between 50 and 80;
 --Q37.Find students whose age is between 18 and 22.
 select * from students where age between 18 and 22;
 
---                                        IN
+--                                                                       IN
 --Q38.Find students from Pune, Mumbai, and Delhi.
 select * from students where city in('Pune','Mumbai','Delhi');
 
 --Q39.Find students whose marks are 50, 60, or 70.
 select * from students where marks in(50,60,70);
 
---                                             LIKE
+--                                                                        LIKE
 --Q39.Find students whose name starts with 'A'.
 select * from students where name like 'A%';
 
@@ -157,8 +157,8 @@ select * from students where name like '%n';
 
 --Q41.Find students whose name contains 'a'.
 select * from students where name like '%a%';
-
---                                            ORDER BY
+ 
+--                                                                          ORDER BY
 --Q42.Display students according to marks in ascending order.
 select * from students  order by marks asc;
 
@@ -168,7 +168,7 @@ select * from students  order by marks desc;
 --Q44.Display students according to name alphabetically.
 select * from students order by name;
 
---                                              LIMIT
+--                                                                            LIMIT
 
 --Q45.Display the top 5 students by marks.
 select * from students order by marks desc limit 5;
@@ -176,14 +176,14 @@ select * from students order by marks desc limit 5;
 --Q46.Display the first 3 students.
 select * from students limit 3;
 
---                                             DISTINCT
+--                                                                            DISTINCT
 --Q47.Display unique cities.
 select distinct city from students;
 
 --Q48.Display unique ages.
 select distinct age from students;
 
---                                 Aggregate Functions
+--                                                                           Aggregate Functions
 
 --Q49.Find the total number of students.
 select count(id) from students;
@@ -211,3 +211,103 @@ select max(marks) from students where city='Mumbai';
 
 --Q57.Find the total marks of students from Pune.
 select sum(marks) from students where city='Pune';
+
+--                                                                               . GROUP BY + HAVING
+
+--Q59. Find the number of students in each city.
+select city,count(id) from students group by city;
+
+--60. Find the average marks in each city.
+select city,avg(marks) from students group by city;
+
+--61. Find the highest marks in each city.
+select city,max(marks) from students group by city;
+
+--62. Find the lowest marks in each city.
+select city,min(marks) from students group by city;
+
+--63. Find the total marks of students in each city.
+select city,sum(marks) from students group by city;
+
+--64. Display cities having more than 2 students.
+select city from students having city > (select count(id) from students);
+
+--65. Display cities where average marks are greater than 60.
+select city from students where marks > 60;
+
+--66. Find the number of students in each age group.
+select age,count(id) from students group by age;
+
+
+--.                                                                         String Functions – Practice Questions
+
+--Use functions like:
+
+--`UPPER()`, `LOWER()`, `LENGTH()`, `TRIM()`, `CONCAT()`, `SUBSTRING()`, `REPLACE()`
+
+--67. Display all student names in uppercase.
+select upper(name) from students;
+
+--68. Display all student names in lowercase.
+select lower(name) from students;
+
+--69. Find the length of every student's name.
+select length(name) from students;
+
+--70. Display names after removing extra spaces.
+select concat_ws('',name) from students;
+
+--71. Combine student name and city into one column.
+select concat_ws(' ',name,city) from students;
+
+--72. Replace `'Pune'` with `'Mumbai'` in city values.
+select replace('Pune','mumbai') from students;
+
+--73. Extract the first 3 characters of every student's name.
+select substring(name,3) from students;
+
+--74. Find students whose name length is greater than 5.
+select * from students where length(name) > 5;
+
+--75. Convert city names to uppercase.
+select upper(city) from students;
+
+--76. Convert email addresses to lowercase.
+select lower(email) from students;
+
+--77. Combine first name and last name into a full name.
+select concat_ws(' ',fname,lname) as full_name from students;
+---
+
+--                                                                            ALTER TABLE – Practice Questions
+
+--78. Add a new column `phone` to the students table.
+alter table students add column phone int;
+
+--79. Add a column `gender`.
+alter table students add gender char;
+
+--80. Change the datatype of `phone`.
+alter table students alter column phone set data type float;
+
+--81. Rename column `name` to `student_name`.
+alter table students rename column name to stud_name;
+
+--82. Rename column `city` to `student_city`.
+alter table students rename column city to stud_city;
+
+--83. Rename the table `students` to `student_details`.
+alter table students rename to student_details;
+
+--84. Delete the `phone` column.
+alter table student_details drop column phone;
+
+--85. Add a default value to the `city` column.
+alter table student_details alter column city add constraint default 'pune';
+
+--86. Add a `NOT NULL` constraint to `name`.
+alter table student_details alter column name add data type not null;
+
+87. Add a `UNIQUE` constraint to `email`.
+
+---
