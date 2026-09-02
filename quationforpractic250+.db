@@ -1,0 +1,213 @@
+CREATE TABLE students (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    city VARCHAR(50),
+    marks INT,
+    email VARCHAR(100)
+);
+--                                      INSERT
+
+--Q1.Insert one student into the students table.
+--Q2.Insert 5 students into the table.
+--Q3.Insert a student with only name, age, and city.
+--Q4.Insert a student whose city is Pune.
+--Q5.Insert 3 students with different marks.
+
+INSERT INTO students (id, name, age, city, marks, email)
+VALUES
+(1, 'Adil', 21, 'Pune', 85, 'adil@gmail.com'),
+(2, 'Rahul', 22, 'Mumbai', 72, 'rahul@gmail.com'),
+(3, 'Aman', 20, 'Delhi', 65, 'aman@gmail.com'),
+(4, 'Priya', 21, 'Pune', 90, 'priya@gmail.com'),
+(5, 'Neha', 19, 'Mumbai', 55, 'neha@gmail.com'),
+(6, 'Rohit', 23, 'Delhi', 38, 'rohit@gmail.com'),
+(7, 'Sneha', 20, 'Pune', 76, 'sneha@gmail.com'),
+(8, 'Vikas', 24, 'Nashik', 45, 'vikas@gmail.com'),
+(9, 'Anjali', 22, 'Pune', 92, 'anjali@gmail.com'),
+(10, 'Karan', 21, 'Mumbai', 60, 'karan@gmail.com');
+
+--                                        SELECT
+--Q6.Display all students.
+select * from students;
+
+--Q7.Display only name and city.
+select name,city from students; 
+
+--Q8.Display students whose marks are greater than 70.
+select * from students where marks > 70;
+
+--Q9.Display students who live in Mumbai.
+select * from students where city='Mumbai';
+
+--Q10.Display students whose age is 20.
+select * from students where age=20;
+
+
+--                                            UPDATE
+--Q11.Change the city of student id = 1 to Pune.
+update students set city='pune' where id=1;
+
+--Q12.Increase marks of all students by 5.
+update students set marks=marks+5;
+
+--Q13.Change the name of student id = 3.
+update students set name='Adil patel' where id=3;
+
+--Q14.Change Mumbai students to Pune.
+update students set city='pune' where city='Mumbai';
+
+--Q15.Update the email of a particular student.
+update students set email='adilazeempatel2005@gmail.com' where id=1;
+
+--                                           DELETE
+--Q16.Delete student whose id = 5.
+delete from students where id=5;
+
+--Q17.Delete all students from Mumbai.
+delete from students where city='Mumbai';
+
+--Q18.Delete students whose marks are below 35.
+delete from students where marks < 35;
+
+--Q19.Delete students whose age is less than 18.
+delete from students where age < 18;
+
+--Q20.Delete all records from the table.
+delete from students;
+
+--                              Constraints
+
+--Q21.Create a table with id as PRIMARY KEY.
+create table s(id int primary key);
+
+--Q22.Create a table where email is UNIQUE.
+create table ss(email varchar(50) unique);
+
+--Q23.Create a table where name is NOT NULL.
+create table sss(name varchar(50) not null);
+
+--Q24.Create a table where age must be greater than 18 using CHECK.
+create table ssss(age int check (age >18));
+
+--Q25.Create a table where city has a default value 'Pune'.
+create table sssss(city varchar(50) default 'pune');
+
+--Q26.Create a table with:
+--id → PRIMARY KEY
+--name → NOT NULL
+--email → UNIQUE
+--age → CHECK(age >= 18)
+create table ss12(id int primary key,name varchar(50) not null,email varchar(50) unique,age int check(age >= 18));
+
+--Q27.Add a UNIQUE constraint to an existing column.
+alter table ss12  add unique(name);
+
+--Q28.Add a CHECK constraint to an existing table.
+alter table ss12  add constraint asp check(age > 18);
+
+--Q29.Remove a constraint from a table.
+alter table ss12 drop constraint asp;
+
+--Q30.Create a foreign key between students and courses
+create table stud(id int primary key);
+create table cour(c_id int primary key,id int references stud(id));
+
+--                                 Clauses 
+--WHERE
+
+--Q31.Find students whose marks are greater than 60.
+select * from students where marks > 60;
+
+--Q32.Find students whose age is between 18 and 25.
+select * from students where age between 18 and 25;
+
+--Q33.Find students who live in Pune.
+select * from students where city='Pune';
+
+--AND / OR
+
+--Q34.Find students whose marks are greater than 70 AND age is greater than 18.
+select * from students where marks > 70 and age > 18;
+
+--Q35.Find students who live in Pune OR Mumbai.
+select * from students where city='Pune' or city='Mumbai';
+
+--                                        BETWEEN
+
+--Q36.Find students whose marks are between 50 and 80.
+select * from students where marks between 50 and 80;
+
+--Q37.Find students whose age is between 18 and 22.
+select * from students where age between 18 and 22;
+
+--                                        IN
+--Q38.Find students from Pune, Mumbai, and Delhi.
+select * from students where city in('Pune','Mumbai','Delhi');
+
+--Q39.Find students whose marks are 50, 60, or 70.
+select * from students where marks in(50,60,70);
+
+--                                             LIKE
+--Q39.Find students whose name starts with 'A'.
+select * from students where name like 'A%';
+
+--Q40.Find students whose name ends with 'n'.
+select * from students where name like '%n';
+
+--Q41.Find students whose name contains 'a'.
+select * from students where name like '%a%';
+
+--                                            ORDER BY
+--Q42.Display students according to marks in ascending order.
+select * from students  order by marks asc;
+
+--Q43.Display students according to marks in descending order.
+select * from students  order by marks desc;
+
+--Q44.Display students according to name alphabetically.
+select * from students order by name;
+
+--                                              LIMIT
+
+--Q45.Display the top 5 students by marks.
+select * from students order by marks desc limit 5;
+
+--Q46.Display the first 3 students.
+select * from students limit 3;
+
+--                                             DISTINCT
+--Q47.Display unique cities.
+select distinct city from students;
+
+--Q48.Display unique ages.
+select distinct age from students;
+
+--                                 Aggregate Functions
+
+--Q49.Find the total number of students.
+select count(id) from students;
+
+--Q50.Find the total marks of all students.
+select sum(marks) from students;
+
+--Q51.Find the average marks.
+select avg(marks) from students;
+
+--Q52.Find the highest marks.
+select max(marks) from students;
+
+--Q53.Find the lowest marks.
+select min(marks) from students;
+
+--Q54.Find the number of students from Pune.
+select count(id) from students where city='Pune';
+
+--Q55.Find the average age of students.
+select avg(age) from students;
+
+--Q56.Find the highest marks among students from Mumbai.
+select max(marks) from students where city='Mumbai';
+
+--Q57.Find the total marks of students from Pune.
+select sum(marks) from students where city='Pune';
